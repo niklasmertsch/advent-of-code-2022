@@ -12,11 +12,11 @@ for i, line in enumerate(open("../inputs/03.txt")):
     single_score += get_score(next(iter(set(line[:len(line) // 2]).intersection(line[len(line) // 2:]))))
 
     if i % 3 == 0:
-        if i > 0:
-            badge_score += get_score(next(iter(group_set)))
         group_set = set(line)
-    group_set &= set(line)
-badge_score += get_score(next(iter(group_set)))
+    else:
+        group_set &= set(line)
+    if i % 3 == 2:
+        badge_score += get_score(next(iter(group_set)))
 
 
 print(f"single score: {single_score}")
