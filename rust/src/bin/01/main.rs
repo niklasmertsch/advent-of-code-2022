@@ -1,5 +1,5 @@
 fn main() {
-    let input = include_str!("input.txt");
+    let input = include_str!("../../../../inputs/01.txt");
     let mut calories = get_calories(input);
     calories.sort();
     let max_calories = calories[calories.len() - 1];

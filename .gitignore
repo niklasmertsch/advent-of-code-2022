@@ -1,5 +1,7 @@
-/target
-/Cargo.lock
+/rust/target
+/rust/Cargo.lock
+
+*.pyc
 
 .idea/
 *.iml

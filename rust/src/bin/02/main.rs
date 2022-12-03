@@ -50,7 +50,7 @@ impl PartialOrd for Move {
 }
 
 fn main() {
-    let moves = get_moves(include_str!("input.txt"));
+    let moves = get_moves(include_str!("../../../../inputs/02.txt"));
     println!("game score: {}", get_game_score(&moves));
     println!("updated game score: {}", get_game_score(&update_moves(&moves)));
 }
