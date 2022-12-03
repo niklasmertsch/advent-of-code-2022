@@ -27,7 +27,6 @@ jobs:
           toolchain: stable
           override: true
       - uses: actions-rs/cargo@v1
-        working-directory: ./rust
         with:
           args: --manifest-path rust/Cargo.toml
           command: test
