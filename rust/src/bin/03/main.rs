@@ -28,20 +28,20 @@ fn read_backpacks(input: &str) -> Vec<(&str, &str)> {
     for line in input.lines() {
         result.push(line.split_at(line.len() / 2));
     }
-    return result;
+    result
 }
 
-fn item_to_priority(item: char) -> u8 {
+fn item_to_priority(item: char) -> i32 {
     match item.is_lowercase() {
-        true => { (item as u8) - ('a' as u8) + 1 }
-        false => { (item as u8) - ('A' as u8) + 1 + 26 }
+        true => { (item as i32) - ('a' as i32) + 1 }
+        false => { (item as i32) - ('A' as i32) + 1 + 26 }
     }
 }
 
 fn find_duplicate_item(compartment1: &str, compartment2: &str) -> char {
     let chars1: HashSet<char> = HashSet::from_iter(compartment1.chars());
     let chars2: HashSet<char> = HashSet::from_iter(compartment2.chars());
-    return chars1.intersection(&chars2).next().expect("No intersection").clone();
+    *chars1.intersection(&chars2).next().expect("No intersection")
 }
 
 fn find_group_badge(backpack1: &str, backpack2: &str, backpack3: &str) -> char {
@@ -51,7 +51,7 @@ fn find_group_badge(backpack1: &str, backpack2: &str, backpack3: &str) -> char {
 
     // there must be a better way to intersect three sets...
     let intersection12: HashSet<char> = HashSet::from_iter(chars1.intersection(&chars2).into_iter().map(char::clone));
-    return chars3.intersection(&intersection12).next().expect("No intersection").clone();
+    *chars3.intersection(&intersection12).next().expect("No intersection")
 }
 
 #[cfg(test)]

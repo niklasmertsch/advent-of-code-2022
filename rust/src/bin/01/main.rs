@@ -24,7 +24,7 @@ fn get_calories(input: &str) -> Vec<i32> {
     if current_kcal > 0 {
         calories.push(current_kcal);
     }
-    return calories;
+    calories
 }
 
 #[cfg(test)]

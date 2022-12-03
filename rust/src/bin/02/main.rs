@@ -64,16 +64,16 @@ fn get_moves(input: &str) -> Vec<(Move, Move)> {
         let my = Move::from(chars.next().expect("No first char")).expect("invalid char");
         result.push((my, their));
     }
-    return result;
+    result
 }
 
 fn get_game_score(moves: &Vec<(Move, Move)>) -> i32 {
     let mut score = 0;
     for (my, their) in moves {
-        let single_score = get_single_score(&my, &their);
+        let single_score = get_single_score(my, their);
         score += single_score;
     }
-    return score;
+    score
 }
 
 fn get_single_score(my: &Move, their: &Move) -> i32 {
@@ -88,7 +88,7 @@ fn get_single_score(my: &Move, their: &Move) -> i32 {
         Ordering::Equal=> score += 3,
         Ordering::Less=> score += 0,
     }
-    return score;
+    score
 }
 
 fn update_moves(moves: &Vec<(Move, Move)>) -> Vec<(Move, Move)> {
@@ -105,9 +105,9 @@ fn update_moves(moves: &Vec<(Move, Move)>) -> Vec<(Move, Move)> {
             (Scissors, Paper) => Scissors,
             (Scissors, Scissors) => Rock,
         };
-        new_moves.push((my_new, their.clone()));
+        new_moves.push((my_new, *their));
     }
-    return new_moves;
+    new_moves
 }
 
 
