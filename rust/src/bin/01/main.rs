@@ -3,7 +3,7 @@ fn main() {
     let mut calories = get_calories(input);
     calories.sort();
     let max_calories = calories[calories.len() - 1];
-    let sum_max_3_calories: i32 = calories[calories.len() - 3 .. calories.len()].iter().sum();
+    let sum_max_3_calories: i32 = calories[calories.len() - 3..calories.len()].iter().sum();
 
     println!("max: {}", max_calories);
     println!("max 3: {}", sum_max_3_calories);
@@ -14,7 +14,7 @@ fn get_calories(input: &str) -> Vec<i32> {
     let mut current_kcal = 0;
     for line in input.lines() {
         match line.parse::<i32>() {
-            Ok(kcal) => { current_kcal += kcal }
+            Ok(kcal) => current_kcal += kcal,
             Err(_) => {
                 calories.push(current_kcal);
                 current_kcal = 0;
@@ -29,7 +29,7 @@ fn get_calories(input: &str) -> Vec<i32> {
 
 #[cfg(test)]
 mod tests {
-    use crate::{get_calories};
+    use crate::get_calories;
 
     #[test]
     fn test_get_calories_on_empty_input() {

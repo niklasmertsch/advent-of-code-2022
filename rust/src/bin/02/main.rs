@@ -1,6 +1,6 @@
+use crate::Move::{Paper, Rock, Scissors};
 use std::cmp::Ordering;
 use std::fmt::{Display, Formatter};
-use crate::Move::{Paper, Rock, Scissors};
 
 #[derive(Eq, PartialEq, Debug, Clone, Copy)]
 enum Move {
@@ -52,7 +52,10 @@ impl PartialOrd for Move {
 fn main() {
     let moves = get_moves(include_str!("../../../../inputs/02.txt"));
     println!("game score: {}", get_game_score(&moves));
-    println!("updated game score: {}", get_game_score(&update_moves(&moves)));
+    println!(
+        "updated game score: {}",
+        get_game_score(&update_moves(&moves))
+    );
 }
 
 fn get_moves(input: &str) -> Vec<(Move, Move)> {
@@ -85,8 +88,8 @@ fn get_single_score(my: &Move, their: &Move) -> i32 {
     }
     match my.partial_cmp(their).expect("Failed to order") {
         Ordering::Greater => score += 6,
-        Ordering::Equal=> score += 3,
-        Ordering::Less=> score += 0,
+        Ordering::Equal => score += 3,
+        Ordering::Less => score += 0,
     }
     score
 }
@@ -110,11 +113,10 @@ fn update_moves(moves: &Vec<(Move, Move)>) -> Vec<(Move, Move)> {
     new_moves
 }
 
-
 #[cfg(test)]
 mod tests {
-    use crate::{get_moves, get_game_score, get_single_score, Move, update_moves};
     use crate::Move::{Paper, Rock, Scissors};
+    use crate::{get_game_score, get_moves, get_single_score, update_moves, Move};
 
     #[test]
     fn test_move_from() {
@@ -129,7 +131,7 @@ mod tests {
 
         assert!(Move::from(' ').is_none())
     }
-    
+
     #[test]
     fn test_move_ordering() {
         assert!(Rock > Scissors);
@@ -175,11 +177,7 @@ mod tests {
 
     #[test]
     fn test_get_game_score() {
-        let moves = Vec::from([
-            (Rock, Paper),
-            (Paper, Rock),
-            (Scissors, Scissors),
-        ]);
+        let moves = Vec::from([(Rock, Paper), (Paper, Rock), (Scissors, Scissors)]);
         assert_eq!(15, get_game_score(&moves))
     }
 
@@ -188,11 +186,10 @@ mod tests {
         let moves = get_moves("A Y\nB X\nC Z\n");
         let updates_moves = update_moves(&moves);
 
-        assert_eq!(updates_moves, Vec::from([
-            (Rock, Rock),
-            (Rock, Paper),
-            (Rock, Scissors),
-        ]));
+        assert_eq!(
+            updates_moves,
+            Vec::from([(Rock, Rock), (Rock, Paper), (Rock, Scissors),])
+        );
 
         assert_eq!(12, get_game_score(&updates_moves));
     }
