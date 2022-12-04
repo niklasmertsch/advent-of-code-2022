@@ -13,9 +13,9 @@ fn main() {
             .map(|s| s.parse::<i32>().expect("no int"));
 
         let first_start = s.next().expect("no first");
-        let first_end = s.next().expect("no first");
-        let second_start = s.next().expect("no first");
-        let second_end = s.next().expect("no first");
+        let first_end = s.next().expect("no second");
+        let second_start = s.next().expect("no third");
+        let second_end = s.next().expect("no fourth");
 
         first_set.clear();
         first_set.extend(first_start..first_end + 1);
